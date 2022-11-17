@@ -21,11 +21,19 @@ const ExpenseForm = (props) => {
 
     const expenseData = {
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount, //Unary operator -- The unary plus operator (+) precedes its operand and evaluates to its operand but attempts to convert it into a number, if it isn't already.
       date: new Date(enteredDate),
     }
 
     props.onSaveExpenseData(expenseData)
+    props.showExpenseForm(false)
+    setEnteredTitle('')
+    setEnteredAmount('')
+    setEnteredDate('')
+  }
+
+  const cancelHandler = () => {
+    props.showExpenseForm(false)
     setEnteredTitle('')
     setEnteredAmount('')
     setEnteredDate('')
@@ -48,6 +56,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button onClick={cancelHandler}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
